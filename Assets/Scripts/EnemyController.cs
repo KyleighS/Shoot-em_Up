@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof (Animator))]
-public class EnemyController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
 	public Transform rightGunBone;
 	public Transform leftGunBone;

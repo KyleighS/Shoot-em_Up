@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovements : MonoBehaviour
 {
     public int speed;
-    public new Rigidbody rigidbody;
 
     // Update is called once per frame
     void Update()
@@ -15,12 +14,5 @@ public class PlayerMovements : MonoBehaviour
 
         
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Wall")
-        {
-            Vector3 vertical = new Vector3(0.0f, 0.0f, 0.0f);
 
-        }
-    }
 }

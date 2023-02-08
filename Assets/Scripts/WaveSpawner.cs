@@ -32,6 +32,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
+        waveCountdown -= Time.deltaTime;
+        
         if(state != SpawnState.Waiting)
         {
             if (!EnemyIsAlive())
@@ -40,7 +42,7 @@ public class WaveSpawner : MonoBehaviour
             }
             else
             {
-                return;
+                //return;
             }
         }
 
@@ -50,11 +52,8 @@ public class WaveSpawner : MonoBehaviour
             {
                 StartCoroutine( SpawnWave(waves[nextWave]) );
             }
-            else
-            {
-                waveCountdown -= Time.deltaTime;
-            }
         }
+                
     }
     void WaveCompleted()
     {

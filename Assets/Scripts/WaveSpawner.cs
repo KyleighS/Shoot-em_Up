@@ -24,6 +24,9 @@ public class WaveSpawner : MonoBehaviour
 
     private SpawnState state = SpawnState.Counting;
 
+    private int xPOs = Random.Range(13, 16);
+    private int zPos = Random.Range(-8, 9);
+
     private void Start()
     {
         waveCountdown = timeBetweenWaves;
@@ -52,6 +55,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 StartCoroutine( SpawnWave(waves[nextWave]) );
             }
+            waveCountdown = timeBetweenWaves;
         }
                 
     }
@@ -99,7 +103,8 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(Transform _enemy)
     {
+
         Debug.Log("Spawing Enemy" + _enemy.name);
-        Instantiate(_enemy, transform.position, transform.rotation);
+        Instantiate(_enemy, new Vector3(xPOs, 0.0f, zPos), transform.rotation);
     }
 }

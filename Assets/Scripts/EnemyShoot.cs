@@ -1,46 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyShoot : MonoBehaviour
 {
-    [SerializeField]
-    Transform target;
+    public GameObject laser;
+    public Transform laserPos;
+    public int laserSpeed;
 
-    [SerializeField]
-    float EnemyRange = 20f;
-    private float distanceBetweenTarget;
-    private NavMeshAgent navMeshAgent;
+    private float timer;
 
-    [SerializeField]
-    private Transform[] laserSpawnPoint;
-
-    [SerializeField]
-    private GameObject laserPrefab;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        distanceBetweenTarget = Vector3.Distance(target.position, transform.position);
+        timer += Time.deltaTime;
 
-        if(distanceBetweenTarget <= EnemyRange)
+        if(timer > 2)
         {
-            navMeshAgent.SetDestination(target.position);
+            timer = 0;
+            Shoot();
         }
+    }
 
-        if(distanceBetweenTarget <= navMeshAgent.stoppingDistance)
-        {
-            foreach(Transform SpawnPonts in laserSpawnPoint)
-            {
-                Instantiate(laserPrefab, SpawnPonts.position, transform.rotation);
-            }
-        }
+    void Shoot()
+    {
+        Instantiate(laser, laserPos.position, Quaternion.identity);
+        laser.GetComponent<Rigidbody>().velocity = laserPos.forward * laserSpeed;
     }
 }

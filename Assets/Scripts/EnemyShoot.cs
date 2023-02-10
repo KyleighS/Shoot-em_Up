@@ -26,6 +26,5 @@ public class EnemyShoot : MonoBehaviour
     void Shoot()
     {
         Instantiate(laser, laserPos.position, Quaternion.identity);
-        laser.GetComponent<Rigidbody>().velocity = laserPos.forward * laserSpeed;
     }
 }

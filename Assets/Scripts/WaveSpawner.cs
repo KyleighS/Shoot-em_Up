@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
+    private int xPos;
+    private int zPos;
+
     public enum SpawnState { Spawning, Waiting, Counting};
 
     [System.Serializable]
@@ -24,11 +27,12 @@ public class WaveSpawner : MonoBehaviour
 
     private SpawnState state = SpawnState.Counting;
 
-    private int xPOs = Random.Range(13, 16);
-    private int zPos = Random.Range(-8, 9);
 
     private void Start()
     {
+        xPos = Random.Range(13, 16);
+        zPos = Random.Range(-8, 9);
+
         waveCountdown = timeBetweenWaves;
 
     }
@@ -105,6 +109,6 @@ public class WaveSpawner : MonoBehaviour
     {
 
         Debug.Log("Spawing Enemy" + _enemy.name);
-        Instantiate(_enemy, new Vector3(xPOs, 0.0f, zPos), transform.rotation);
+        Instantiate(_enemy, new Vector3(xPos, 0.0f, zPos), transform.rotation);
     }
 }

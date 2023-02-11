@@ -17,6 +17,11 @@ public class TumbleWeed : MonoBehaviour
     void Update()
     {
         controller.Move(Vector3.left * speed * Time.deltaTime);
-        //controller.Rotate;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Destroy(collision.gameObject);
+        Destroy(gameObject);
     }
 }

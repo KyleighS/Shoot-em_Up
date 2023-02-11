@@ -22,6 +22,10 @@ public class TumbleWeed : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        SceneManager.LoadScene("Game");
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("Game");
+
+        }
     }
 }

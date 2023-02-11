@@ -6,25 +6,22 @@ using UnityEngine.AI;
 
 public class EnemyShoot : MonoBehaviour
 {
-    public GameObject laser;
-    public Transform laserPos;
-    public int laserSpeed;
+    public Transform laserSpawnPoint;
+    public GameObject laserPrefab;
+    public float speed = 10;
 
-    private float timer;
+    private float countDown = 4;
 
     void Update()
     {
-        timer += Time.deltaTime;
+        countDown -= Time.deltaTime;
 
-        if(timer > 2)
+        if (countDown <= 0)
         {
-            timer = 0;
-            Shoot();
-        }
-    }
+            var bullet = Instantiate(laserPrefab, laserSpawnPoint.position, laserSpawnPoint.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = -laserSpawnPoint.right * speed;
 
-    void Shoot()
-    {
-        Instantiate(laser, laserPos.position, Quaternion.identity);
+            countDown = 4;
+        }
     }
 }

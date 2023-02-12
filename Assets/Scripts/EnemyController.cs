@@ -48,4 +48,5 @@ public class PlayerController : MonoBehaviour {
 		public GameObject leftGun;
 		public RuntimeAnimatorController controller;
 	}
+
 }

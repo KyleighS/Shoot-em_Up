@@ -24,8 +24,8 @@ public class TumbleWeed : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("Game");
-
+            SceneManager.LoadScene("GameOver");
+            Destroy(gameObject);
         }
     }
 }

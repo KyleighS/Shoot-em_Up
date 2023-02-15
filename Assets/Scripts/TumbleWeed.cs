@@ -17,7 +17,7 @@ public class TumbleWeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        controller.Move(Vector3.up * speed * Time.deltaTime);
+        controller.Move(Vector3.left * speed * Time.deltaTime);
     }
 
     void OnCollisionEnter(Collision collision)

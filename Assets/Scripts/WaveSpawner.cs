@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class WaveSpawner : MonoBehaviour
 {
 
-    public enum SpawnState { Spawning, Waiting, Counting};
+    public enum SpawnState { Spawning, Waiting, Counting };
 
     [System.Serializable]
     public class Wave
@@ -37,8 +37,8 @@ public class WaveSpawner : MonoBehaviour
     private void Update()
     {
         waveCountdown -= Time.deltaTime;
-        
-        if(state != SpawnState.Waiting)
+
+        if (state != SpawnState.Waiting)
         {
             if (!EnemyIsAlive())
             {
@@ -50,21 +50,21 @@ public class WaveSpawner : MonoBehaviour
             }
         }
 
-        if(waveCountdown <= 0)
+        if (waveCountdown <= 0)
         {
-            if(state != SpawnState.Spawning)
+            if (state == SpawnState.Spawning)
             {
-                StartCoroutine( SpawnWave(waves[nextWave]) );
+                StartCoroutine(SpawnWave(waves[nextWave]));
             }
             waveCountdown = timeBetweenWaves;
         }
-                
+
     }
     void WaveCompleted()
     {
         state = SpawnState.Counting;
         waveCountdown = timeBetweenWaves;
-        if(nextWave + 1 > waves.Length - 1)
+        if (nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
         }
@@ -91,7 +91,7 @@ public class WaveSpawner : MonoBehaviour
 
         state = SpawnState.Spawning;
 
-        for(int i = 0; i < _wave.count; i++)
+        for (int i = 0; i < _wave.count; i++)
         {
             SpawnEnemy(_wave.enemy);
 

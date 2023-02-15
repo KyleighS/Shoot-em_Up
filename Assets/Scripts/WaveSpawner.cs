@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class WaveSpawner : MonoBehaviour
 {
-    private int xPos;
-    private int zPos;
 
     public enum SpawnState { Spawning, Waiting, Counting};
 
@@ -71,6 +69,7 @@ public class WaveSpawner : MonoBehaviour
             nextWave = 0;
         }
         nextWave++;
+
     }
     bool EnemyIsAlive()
     {
@@ -108,6 +107,6 @@ public class WaveSpawner : MonoBehaviour
     {
 
         Debug.Log("Spawing Enemy" + _enemy.name);
-        Instantiate(_enemy, new Vector3(16, 0.0f, 0.0f), transform.rotation);
+        Instantiate(_enemy, new Vector3(transform.position.x, 0.0f, transform.position.z), transform.rotation);
     }
 }

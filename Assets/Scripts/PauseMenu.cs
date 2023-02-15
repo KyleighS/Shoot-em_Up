@@ -1,41 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static bool IsPaused = false;
+    public GameObject Menu;
 
-    public GameObject menu;
+    /*public GameObject menu;
     public bool isPaused = false;
 
     private void Start()
     {
-        /*if (GameManager.Instance == null)
+        if (GameManager.Instance == null)
         {
             GameManager.Instance.UnPauseMusic();
-        }*/
+        }
 
         menu.SetActive(false);
         Time.timeScale = 1f;
-    }
+    }*/
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePauseGame();
+            if (IsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
+    public void LoadLevel(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
-    public void TogglePauseGame()
+    void Resume()
+    {
+        Menu.SetActive(false);
+        Time.timeScale = 1f;
+        IsPaused = false;
+    }
+
+    void Pause()
+    {
+        Menu.SetActive(true);
+        Time.timeScale = 0.0f;
+        IsPaused = true;
+    }
+}
+    /*public void TogglePauseGame()
     {
         isPaused = !isPaused;
 
         //will open and close menu
         menu.SetActive(isPaused);
 
-        /*/controlling music depending on if the game is paused or not
-        //if (isPaused = true)
+        controlling music depending on if the game is paused or not
+        if (isPaused = true)
         if (isPaused)
         {
             Time.timeScale = 0f;
@@ -49,11 +77,5 @@ public class PauseMenu : MonoBehaviour
             //GameManager.Instance.audio.pitch = 1f;
             GameManager.Instance.UnPauseMusic();
 
-        }*/
-    }
-
-    public void LoadLevel(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-}
+        }
+    }*/

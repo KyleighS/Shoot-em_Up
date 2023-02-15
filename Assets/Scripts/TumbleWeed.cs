@@ -6,18 +6,16 @@ using UnityEngine.SceneManagement;
 public class TumbleWeed : MonoBehaviour
 {
     public float speed;
-    private CharacterController controller;
+    private Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
-
     // Update is called once per frame
     void Update()
     {
-        controller.Move(Vector3.left * speed * Time.deltaTime);
+        rb.MovePosition(transform.position + Vector3.left * speed * Time.deltaTime);
     }
 
     void OnCollisionEnter(Collision collision)

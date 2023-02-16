@@ -13,7 +13,10 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Scoring.instance.AddPoint();
+        if (collision.gameObject.tag == "Enemy") 
+        {
+            Scoring.instance.AddPoint();
+        }
 
         Destroy(collision.gameObject);
         Destroy(gameObject);

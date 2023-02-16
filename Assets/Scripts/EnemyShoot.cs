@@ -10,18 +10,19 @@ public class EnemyShoot : MonoBehaviour
     public GameObject laserPrefab;
     public float speed = 10;
 
-    private float countDown = 4;
+    private float countDown = 3;
 
     void Update()
     {
         countDown -= Time.deltaTime;
-
+        
         if (countDown <= 0)
         {
             var bullet = Instantiate(laserPrefab, laserSpawnPoint.position, laserSpawnPoint.rotation);
             bullet.GetComponent<Rigidbody>().velocity = -laserSpawnPoint.right * speed;
 
-            countDown = 4;
+            countDown = 3;
         }
     }
+    
 }

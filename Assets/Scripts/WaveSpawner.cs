@@ -29,9 +29,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
-
         waveCountdown = timeBetweenWaves;
-
     }
 
     private void Update()
@@ -50,9 +48,9 @@ public class WaveSpawner : MonoBehaviour
             }
         }
 
-        if (waveCountdown <= 0)
+        if (waveCountdown <= 0 && !EnemyIsAliveNoCooldown())
         {
-            if (state == SpawnState.Spawning)
+            //if (state == SpawnState.Spawning || state == SpawnState.Counting)
             {
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
@@ -64,10 +62,12 @@ public class WaveSpawner : MonoBehaviour
     {
         state = SpawnState.Counting;
         waveCountdown = timeBetweenWaves;
+
         if (nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
         }
+
         nextWave++;
 
     }
@@ -85,6 +85,12 @@ public class WaveSpawner : MonoBehaviour
 
         return true;
     }
+
+    bool EnemyIsAliveNoCooldown()
+    {
+        return GameObject.FindGameObjectsWithTag("Enemy") == null;
+    }
+
     IEnumerator SpawnWave(Wave _wave)
     {
         Debug.Log("Spawning Wave: " + _wave.name);
